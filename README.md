@@ -20,8 +20,12 @@ class TestExchangeRateSetup(unittest.TestCase):
   def setUp(self):
     xrates.uninstall()
   
-  def test_register():
-  
+  def test_register(self):
+    self.assertFalse(xrates)
+    self.assertIsNone(xrates.backend_name)
+    xrates.install(SimpleBackend)
+    self.assertEqual(xrates.backend_name, 'SimpleBackend')
+    
   def test_register_class():
   
   def test_register_instance():
